@@ -16,11 +16,9 @@ const Profile = () => {
         if (response) {
             setResult(response.user);
         }
-        console.log("retriveUserDetails", response.user);
 
     }
 
-    console.log("result", result);
 
     const [show, setShow] = useState(false);
 

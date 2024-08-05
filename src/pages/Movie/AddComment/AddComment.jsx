@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { addComment } from '../../../services/movieApiService';
+import Swal from 'sweetalert2';
 
-const AddComment = ({ movieId, fetchData }) => {
+const AddComment = ({ fetchData, movieId }) => {
     const [comment, setComment] = useState('');
 
     const handleCommentChange = (e) => {
@@ -12,11 +13,25 @@ const AddComment = ({ movieId, fetchData }) => {
     const handleAddComment = async () => {
         try {
             const response = await addComment(movieId, comment);
-            console.log("handleAddComment", response);
 
             if (response) {
-                setComment('');
-                fetchData();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Add comment',
+                    text: 'Add comment Successfully',
+                    confirmButtonText: 'ok',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fetchData();
+                        setComment('');
+                    }
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Update movie failed',
+                    text: 'Please try again'
+                });
             }
         } catch (error) {
             console.error("Error adding comment:", error);

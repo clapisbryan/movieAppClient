@@ -23,7 +23,6 @@ const Movie = () => {
 
 		if (response) {
 			setResult(response.movies || []);
-			console.log("Response", response.movies);
 		}
 
 	}
@@ -54,7 +53,7 @@ const Movie = () => {
 											<p>Year: {movie.year}</p>
 											<GetComment movieId={movie._id} />
 											{token &&
-												<AddComment movieId={movie._id} fetchData={retrieveMovies} />
+												<AddComment fetchData={retrieveMovies} movieId={movie._id} />
 											}
 										</div>
 									</div>
