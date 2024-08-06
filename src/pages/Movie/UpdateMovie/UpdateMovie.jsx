@@ -149,11 +149,11 @@ export default function UpdateMovie({ fetchData, data }) {
                     {isActive ?
 
                         <Button variant="danger" type="submit" disabled>
-                            Add
+                            Update
                         </Button>
                         :
                         <Button variant="primary" type="submit" onClick={(e) => handleUpdateMovie(e)}>
-                            Add
+                            Update
                         </Button>
                     }
                 </Modal.Footer>
