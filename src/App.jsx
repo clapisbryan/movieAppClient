@@ -31,7 +31,7 @@ function App() {
       <AppNavbar isToken={isToken} handleLogout={handleLogout} />
       <Router>
         <Routes>
-          <Route path="/" element={<Movie />} />
+          <Route path="/" element={<Register />} />
           <Route path="/movies" element={<Movie />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

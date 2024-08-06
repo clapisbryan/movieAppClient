@@ -34,7 +34,7 @@ export default function Login() {
 					confirmButtonText: 'ok',
 				}).then((result) => {
 					if (result.isConfirmed) {
-						navigate('/');
+						navigate('/movies');
 					}
 				})
 			} else {
