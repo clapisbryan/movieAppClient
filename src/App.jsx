@@ -1,5 +1,4 @@
-
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 import AppNavbar from './components/AppNavbar/AppNavbar';
 import Login from './pages/Login/Login';
 import Movie from './pages/Movie/Movie';
@@ -7,6 +6,19 @@ import NoMatch from './pages/NoMatch/NoMatch';
 import Profile from './components/Profile/Profile';
 import Register from './pages/Register/Register';
 import { useEffect, useState } from 'react';
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      <Route path="/" element={<Register />}></Route>
+      <Route path="/movies" element={<Movie />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="*" element={<NoMatch />} />
+    </>
+  )
+)
+
 
 function App() {
   const token = localStorage.getItem('token');
@@ -23,21 +35,13 @@ function App() {
     } else {
       setIsToken(false);
     }
-    
+
   }, [token])
 
   return (
     <>
       <AppNavbar isToken={isToken} handleLogout={handleLogout} />
-      <Router>
-        <Routes>
-          <Route path="/" element={<Register />} />
-          <Route path="/movies" element={<Movie />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="*" element={<NoMatch />} />
-        </Routes>
-      </Router>
+      <RouterProvider router={router} />
     </>
   )
 }
